@@ -209,18 +209,19 @@
     <label class="required">MOBILE NUMBER</label>
     <input type="text" name="mobile" required pattern="[0-9]{10}">
 
-    <label class="required">BRANCH</label>
-    <div class="checkboxes">
-      <label><input type="checkbox" name="branch" value="AERO"> AERO</label>
-      <label><input type="checkbox" name="branch" value="CSD"> CSD</label>
-      <label><input type="checkbox" name="branch" value="CSE"> CSE</label>
-      <label><input type="checkbox" name="branch" value="CSIT"> CSIT</label>
-      <label><input type="checkbox" name="branch" value="CSM"> CSM</label>
-      <label><input type="checkbox" name="branch" value="ECE"> ECE</label>
-      <label><input type="checkbox" name="branch" value="EEE"> EEE</label>
-      <label><input type="checkbox" name="branch" value="IT"> IT</label>
-      <label><input type="checkbox" name="branch" value="MECH"> MECH</label>
-    </div>
+<label class="required">BRANCH</label>
+<div class="radio-group">
+  <label><input type="radio" name="branch" value="AERO" required> AERO</label>
+  <label><input type="radio" name="branch" value="CSD"> CSD</label>
+  <label><input type="radio" name="branch" value="CSE"> CSE</label>
+  <label><input type="radio" name="branch" value="CSIT"> CSIT</label>
+  <label><input type="radio" name="branch" value="CSM"> CSM</label>
+  <label><input type="radio" name="branch" value="ECE"> ECE</label>
+  <label><input type="radio" name="branch" value="EEE"> EEE</label>
+  <label><input type="radio" name="branch" value="IT"> IT</label>
+  <label><input type="radio" name="branch" value="MECH"> MECH</label>
+</div>
+
 
     <label class="required">SECTION</label>
     <input type="text" name="section" required>
