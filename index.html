@@ -109,14 +109,14 @@
       content: " *";
       color: red;
     }
-    
+
     .checkboxes, .radio-group {
       display: flex;
       flex-wrap: wrap;
       gap: 15px;
       margin-bottom: 20px;
-      
     }
+
     .checkboxes label, .radio-group label {
       display: inline-flex;
       align-items: center;
@@ -128,15 +128,13 @@
       cursor: pointer;
       font-size: 15px;
       line-height: 1.5;
-      
     }
+
     .checkboxes input, .radio-group input {
       transform: scale(1.2);
       margin: 0;
       vertical-align: middle;
-      
     }
-
 
     textarea {
       resize: vertical;
@@ -150,6 +148,20 @@
     #confirmation-page p {
       font-size: 1.1rem;
     }
+
+    @media (max-width: 768px) {
+      .box {
+        padding: 20px;
+      }
+
+      form {
+        padding: 20px;
+      }
+
+      .logo {
+        height: 120px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -157,7 +169,7 @@
 <!-- Landing Page -->
 <div class="container" id="landing-page">
   <div class="box">
-    <img src="https://assets.onecompiler.app/43m4se7aq/43m4qebr2/ewblogo.png" alt="EWB Logo" class="logo" style="height: 200px"/>
+    <img src="https://assets.onecompiler.app/43m4se7aq/43m4qebr2/ewblogo.png" alt="EWB Logo" class="logo" style="max-width: 100%; height: auto;"/>
     <h1>Welcome to EWB-IUCEE MLRIT</h1>
     <p>
       Engineers Without Borders (EWB) is a student-driven chapter that fosters innovation, teamwork, and leadership to solve real-world problems and serve communities. Join us in engineering change!
