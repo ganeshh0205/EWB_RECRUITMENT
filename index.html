@@ -223,6 +223,12 @@
   <label><input type="radio" name="branch" value="MECH"> MECH</label>
 </div>
 
+    <select name="year" required>
+      <option value="">--Select Year--</option>
+      <option value="I">I</option>
+      <option value="II">II</option>
+      <option value="III">III</option>
+    </select>
 
     <label class="required">SECTION</label>
     <input type="text" name="section" required>
@@ -233,8 +239,7 @@
     <label class="required">BACKLOGS</label>
     <input type="text" name="backlogs" required>
 
-    <label class="required">YEAR</label>
-    <input type="text" name="year" required>
+
 
     <button type="button" class="btn" onclick="nextSection(1)">Next</button>
   </div>
