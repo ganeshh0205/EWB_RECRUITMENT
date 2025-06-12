@@ -6,168 +6,176 @@
   <title>EWB Recruitment Form</title>
   <link rel="icon" type="image/png" href="https://assets.onecompiler.app/43m4se7aq/43m4qebr2/ewblogo.png" />
   <style>
-    * {
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  background-color: #000;
-  color: #00ff88;
-}
-
-header {
-  padding: 20px;
-  text-align: center;
-  background-color: #111;
-  position: sticky;
-  top: 0;
-  z-index: 999;
-}
-
-.logo {
-  height: 60px;
-  margin-bottom: 10px;
-}
-
-.container {
-  padding: 60px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  min-height: 100vh;
-}
-
-.box {
-  background: #1e1e1e;
-  padding: 30px 40px;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 255, 136, 0.2);
-  max-width: 600px;
-  width: 100%;
-  text-align: center;
-}
-
-.btn {
-  padding: 12px 25px;
-  margin-top: 20px;
-  font-size: 16px;
-  border: none;
-  background-color: #00cc66;
-  color: white;
-  cursor: pointer;
-  border-radius: 6px;
-  transition: background 0.3s ease;
-}
-
-.btn:hover {
-  background-color: #00b359;
-}
-
-form {
-  max-width: 750px;
-  width: 100%;
-  background: #1e1e1e;
-  padding: 30px;
-  margin: 20px auto;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 255, 136, 0.15);
-}
-
-.form-section {
-  display: none;
-}
-
-.form-section.active {
-  display: block;
-  animation: fade 0.5s ease-in-out;
-}
-
-@keyframes fade {
-  from {opacity: 0;}
-  to {opacity: 1;}
-}
-
-label {
-  display: block;
-  margin: 10px 0 5px;
-  font-weight: bold;
-  color: #00ff88;
-}
-
-input, select, textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #555;
-  border-radius: 4px;
-  background-color: #000;
-  color: #00ff88;
-}
-
-.required::after {
-  content: " *";
-  color: #ff4d4d;
-}
-
-.checkboxes, .radio-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  margin-bottom: 20px;
-}
-
-.checkboxes label, .radio-group label {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background: #333;
-  padding: 6px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 15px;
-  line-height: 1.5;
-  color: #00ff88;
-}
-
-.checkboxes input, .radio-group input {
-  transform: scale(1.2);
-  margin: 0;
-  vertical-align: middle;
-}
-
-textarea {
-  resize: vertical;
-  height: 80px;
-}
-
-#confirmation-page h2 {
-  margin-bottom: 10px;
-}
-
-#confirmation-page p {
-  font-size: 1.1rem;
-  color: #00ff88;
-}
-
-@media (max-width: 768px) {
-  .box {
-    padding: 20px;
+  * {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
   }
 
-  form {
+  body {
+    background-color: #121212;
+    color: #cdeac0;
+  }
+
+  header {
     padding: 20px;
+    text-align: center;
+    background-color: #1a331f;
+    position: sticky;
+    top: 0;
+    z-index: 999;
   }
 
   .logo {
-    height: 120px;
+    height: 60px;
+    margin-bottom: 10px;
   }
-}
+
+  .container {
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 100vh;
+  }
+
+  .box {
+    background: #1e1e1e;
+    color: #cdeac0;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .btn {
+    padding: 12px 25px;
+    margin-top: 20px;
+    font-size: 16px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+  }
+
+  .btn:hover {
+    background-color: #43a047;
+  }
+
+  form {
+    max-width: 750px;
+    width: 100%;
+    background: #1e1e1e;
+    color: #cdeac0;
+    padding: 30px;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  }
+
+  .form-section {
+    display: none;
+  }
+
+  .form-section.active {
+    display: block;
+    animation: fade 0.5s ease-in-out;
+  }
+
+  @keyframes fade {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+
+  label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+    color: #cdeac0;
+  }
+
+  input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #121212;
+    color: #cdeac0;
+    border: 1px solid #4CAF50;
+    border-radius: 4px;
+  }
+
+  .required::after {
+    content: " *";
+    color: #ff6f61;
+  }
+
+  .checkboxes, .radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+
+  .checkboxes label, .radio-group label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #2c2c2c;
+    color: #cdeac0;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+    border: 1px solid #4CAF50;
+  }
+
+  .checkboxes input, .radio-group input {
+    transform: scale(1.2);
+    margin: 0;
+    vertical-align: middle;
+  }
+
+  textarea {
+    resize: vertical;
+    height: 80px;
+  }
+
+  #confirmation-page h2 {
+    margin-bottom: 10px;
+    color: #cdeac0;
+  }
+
+  #confirmation-page p {
+    font-size: 1.1rem;
+    color: #cdeac0;
+  }
+
+  @media (max-width: 768px) {
+    .box {
+      padding: 20px;
+    }
+
+    form {
+      padding: 20px;
+    }
+
+    .logo {
+      height: 100px;
+    }
+  }
+
+  /* Spinner animation for button */
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
   </style>
 </head>
 <body>
