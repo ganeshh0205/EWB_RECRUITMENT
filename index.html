@@ -284,7 +284,7 @@
     <label class="required">List any technical/design/creative tools you are familiar with.</label>
     <input type="text" name="tools" required>
 
-    <label>Have you participated in any clubs, competitions, or projects?</label>
+    <label>Have you participated in any of the EWB events, competitions, or projects?</label>
     <textarea name="activities"></textarea>
 
     <label class="required">Are you comfortable working in a team environment?</label>
@@ -292,14 +292,6 @@
       <label><input type="radio" name="team" value="Yes" required> Yes</label>
       <label><input type="radio" name="team" value="No"> No</label>
     </div>
-
-    <label class="required">How much time per week can you commit to EWB activities?</label>
-    <select name="time" required>
-      <option value="">--Select--</option>
-      <option>Less than 5 hours</option>
-      <option>5-10 hours</option>
-      <option>10+ hours</option>
-    </select>
 
     <button type="submit" class="btn">Submit</button>
   </div>
@@ -315,7 +307,7 @@
 </div>
 
 <script>
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbyq70XT6KYKwlq0S086Gqfu2XxK1YK_-IIH5vTb9F2BYiGogfWwCXUqUSJfOzV0XiW5/exec'; // 👈 Replace with your deployed Apps Script web app URL
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbyq70XT6KYKwlq0S086Gqfu2XxK1YK_-IIH5vTb9F2BYiGogfWwCXUqUSJfOzV0XiW5/exec';
 
   function startApplication() {
     document.getElementById('landing-page').style.display = 'none';
@@ -337,33 +329,83 @@
     document.getElementById(`section-${current + 1}`).classList.add('active');
   }
 
+  // Create toast element
+  const toast = document.createElement('div');
+  toast.style.position = 'fixed';
+  toast.style.bottom = '30px';
+  toast.style.left = '50%';
+  toast.style.transform = 'translateX(-50%)';
+  toast.style.backgroundColor = '#ff4d4d';
+  toast.style.color = '#fff';
+  toast.style.padding = '12px 20px';
+  toast.style.borderRadius = '6px';
+  toast.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+  toast.style.zIndex = '9999';
+  toast.style.fontSize = '16px';
+  toast.style.display = 'none';
+  document.body.appendChild(toast);
+
+  function showToast(message) {
+    toast.textContent = message;
+    toast.style.display = 'block';
+    setTimeout(() => {
+      toast.style.display = 'none';
+    }, 4000);
+  }
+
+  let isSubmitting = false;
+
   document.getElementById('application-form').addEventListener('submit', function(e) {
     e.preventDefault();
+
+    if (isSubmitting) return;
+    isSubmitting = true;
+
+    const submitBtn = this.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    const originalText = submitBtn.textContent;
+    submitBtn.innerHTML = '<span class="spinner" style="margin-right:8px; width:18px; height:18px; border:2px solid #fff; border-top:2px solid transparent; border-radius:50%; display:inline-block; animation:spin 1s linear infinite;"></span>Submitting...';
 
     const form = document.getElementById('application-form');
     const formData = new FormData(form);
 
-    // Combine multiple checkboxes for "branch" into comma-separated string
-    const branchCheckboxes = form.querySelectorAll('input[name="branch"]:checked');
-    const branchValues = Array.from(branchCheckboxes).map(cb => cb.value).join(', ');
-    formData.set('branch', branchValues);
+    const branchRadio = form.querySelector('input[name="branch"]:checked');
+    if (branchRadio) {
+      formData.set('branch', branchRadio.value);
+    }
 
     fetch(scriptURL, { method: 'POST', body: formData })
       .then(response => {
         if (response.ok) {
-          // Show confirmation
           document.getElementById('application-form').style.display = 'none';
           document.getElementById('form-header').style.display = 'none';
           document.getElementById('confirmation-page').style.display = 'flex';
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         } else {
-          alert("Submission failed. Please try again.");
+          showToast("Submission failed. Please try again.");
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+          isSubmitting = false;
         }
       })
       .catch(error => {
         console.error("Error!", error.message);
-        alert("An error occurred. Please try again.");
+        showToast("Network error. Please try again.");
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+        isSubmitting = false;
       });
   });
+
+  // Spinner keyframes
+  const style = document.createElement('style');
+  style.innerHTML = `
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+  `;
+  document.head.appendChild(style);
 </script>
 </body>
 </html>
