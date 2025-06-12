@@ -193,9 +193,6 @@
     <label class="required">FULL NAME (CAPITAL LETTERS ONLY)</label>
     <input type="text" name="name" required pattern="[A-Z ]+">
 
-    <label class="required">ROLL NUMBER</label>
-    <input type="text" name="roll" required>
-
     <label class="required">MAIL ID</label>
     <input type="email" name="email" required>
 
@@ -209,30 +206,35 @@
 
     <label class="required">MOBILE NUMBER</label>
     <input type="text" name="mobile" required pattern="[0-9]{10}">
-
-<label class="required">BRANCH</label>
-<div class="radio-group">
-  <label><input type="radio" name="branch" value="AERO" required> AERO</label>
-  <label><input type="radio" name="branch" value="CSD"> CSD</label>
-  <label><input type="radio" name="branch" value="CSE"> CSE</label>
-  <label><input type="radio" name="branch" value="CSIT"> CSIT</label>
-  <label><input type="radio" name="branch" value="CSM"> CSM</label>
-  <label><input type="radio" name="branch" value="ECE"> ECE</label>
-  <label><input type="radio" name="branch" value="EEE"> EEE</label>
-  <label><input type="radio" name="branch" value="IT"> IT</label>
-  <label><input type="radio" name="branch" value="MECH"> MECH</label>
-</div>
-
-   <label class="required">YEAR</label>
+    
+    <label class="required">YEAR</label>
     <select name="year" required>
       <option value="">--Select Year--</option>
       <option value="I">I</option>
       <option value="II">II</option>
       <option value="III">III</option>
     </select>
+    
+    <label class="required">BRANCH</label>
+    <select name="branch" required>
+      <option value="">--Select Branch--</option>
+      <option value="AERO">AERO</option>
+      <option value="CSC">CSC</option>
+      <option value="CSD">CSD</option>
+      <option value="CSE">CSE</option>
+      <option value="CSIT">CSIT</option>
+      <option value="CSM">CSM</option>
+      <option value="ECE">ECE</option>
+      <option value="EEE">EEE</option>
+      <option value="IT">IT</option>
+      <option value="MECH">MECH</option>
+    </select>
 
     <label class="required">SECTION</label>
     <input type="text" name="section" required>
+    
+    <label class="required">ROLL NUMBER</label>
+    <input type="text" name="roll" required>
 
     <label class="required">CURRENT GPA</label>
     <input type="text" name="gpa" required>
@@ -281,9 +283,6 @@
   <!-- Section 3 -->
   <div class="form-section" id="section-3">
     <h2>Section 3: Experience & Availability</h2>
-
-    <label class="required">Why do you want to be a part of EWB-IUCEE MLRIT?</label>
-    <textarea name="partof" required></textarea>
 
     <label class="required">Are you comfortable working in a team environment?</label>
     <div class="radio-group">
