@@ -276,59 +276,49 @@
     <label class="required">WHY ARE YOU INTERESTED TO JOIN EWB?</label>
     <textarea name="interest" required></textarea>
 
-     <style>
+<style>
   .checkbox-container {
-    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #E6F4EA;
     padding: 20px;
     border-radius: 10px;
-    width: 100%;
-    max-width: 700px;
+    max-width: 600px;
     margin: auto;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    align-items: flex-start;
+    text-align: right;
   }
 
-  .checkbox-container label {
-    flex: 1 1 250px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 500;
-    color: #000;
-  }
-
-  .checkbox-container input[type="checkbox"] {
-    transform: scale(1.2);
-  }
-
-  .role-wrapper {
-    margin-bottom: 20px;
-    text-align: center;
-  }
-
-  .role-wrapper label.required {
-    display: block;
-    font-size: 1.1em;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #fff;
-  }
+.checkbox-container label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  color: #1B1F1D;
+  background: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #4CAF50;
+  width: 100%;
+  justify-content: flex-start;
+}
 </style>
 
+
+<!-- Inside Section 2 -->
 <div class="role-wrapper">
-  <label class="required">ROLE YOU WANT TO OPT</label>
+  <label class="required">ROLE YOU WANT TO OPT </label>
   <div class="checkbox-container" id="role-checkboxes">
-    <label><input type="checkbox" value="Arts & Crafts">Arts & Crafts</label>
-    <label><input type="checkbox" value="Content">Content</label>
-    <label><input type="checkbox" value="Graphic Designing">Graphic Designing</label>
-    <label><input type="checkbox" value="Ground Works">Ground Works</label>
-    <label><input type="checkbox" value="Projects">Projects</label>
-    <label><input type="checkbox" value="Photography and Videography">Photography and Videography</label>
-    <label><input type="checkbox" value="Resource Planning">Resource Planning</label>
-    <label><input type="checkbox" value="Technical">Technical</label>
-    <label><input type="checkbox" value="Social Media Handling">Social Media Handling</label>
+    <label><input type="checkbox" value="Arts & Crafts"> Arts & Crafts</label>
+    <label><input type="checkbox" value="Content"> Content</label>
+    <label><input type="checkbox" value="Graphic Designing"> Graphic Designing</label>
+    <label><input type="checkbox" value="Ground Works"> Ground Works</label>
+    <label><input type="checkbox" value="Photography and Videography"> Photography and Videography</label>
+    <label><input type="checkbox" value="Projects"> Projects</label>
+    <label><input type="checkbox" value="Resource Planning"> Resource Planning</label>
+    <label><input type="checkbox" value="Social Media Handling"> Social Media Handling</label>
+    <label><input type="checkbox" value="Technical"> Technical</label>
   </div>
   <input type="hidden" name="role" id="role-input" required>
 </div>
@@ -417,56 +407,48 @@
   }
 
   let isSubmitting = false;
-  // Collect selected checkboxes for roles
-  const selectedRoles = Array.from(document.querySelectorAll('#role-checkboxes input:checked'))
-    .map(cb => cb.value)
-    .join(', ');
-  document.getElementById('role-input').value = selectedRoles;
-
 
   document.getElementById('application-form').addEventListener('submit', function(e) {
-  e.preventDefault();
+    e.preventDefault();
 
-  if (isSubmitting) return;
-  isSubmitting = true;
+    if (isSubmitting) return;
+    isSubmitting = true;
 
-  // Collect selected roles at the time of submission
-  const selectedRoles = Array.from(document.querySelectorAll('#role-checkboxes input:checked'))
-    .map(cb => cb.value)
-    .join(', ');
-  document.getElementById('role-input').value = selectedRoles;
+    const selectedRoles = Array.from(document.querySelectorAll('#role-checkboxes input:checked'))
+      .map(cb => cb.value)
+      .join(', ');
+    document.getElementById('role-input').value = selectedRoles;
 
-  const submitBtn = this.querySelector('button[type="submit"]');
-  submitBtn.disabled = true;
-  const originalText = submitBtn.textContent;
-  submitBtn.innerHTML = '<span class="spinner" style="margin-right:8px; width:18px; height:18px; border:2px solid #fff; border-top:2px solid transparent; border-radius:50%; display:inline-block; animation:spin 1s linear infinite;"></span>Submitting...';
+    const submitBtn = this.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    const originalText = submitBtn.textContent;
+    submitBtn.innerHTML = '<span class="spinner" style="margin-right:8px; width:18px; height:18px; border:2px solid #fff; border-top:2px solid transparent; border-radius:50%; display:inline-block; animation:spin 1s linear infinite;"></span>Submitting...';
 
-  const form = document.getElementById('application-form');
-  const formData = new FormData(form);
+    const form = document.getElementById('application-form');
+    const formData = new FormData(form);
 
-  fetch(scriptURL, { method: 'POST', body: formData })
-    .then(response => {
-      if (response.ok) {
-        document.getElementById('application-form').style.display = 'none';
-        document.getElementById('form-header').style.display = 'none';
-        document.getElementById('confirmation-page').style.display = 'flex';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else {
-        showToast("Submission failed. Please try again.");
+    fetch(scriptURL, { method: 'POST', body: formData })
+      .then(response => {
+        if (response.ok) {
+          document.getElementById('application-form').style.display = 'none';
+          document.getElementById('form-header').style.display = 'none';
+          document.getElementById('confirmation-page').style.display = 'flex';
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          showToast("Submission failed. Please try again.");
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+          isSubmitting = false;
+        }
+      })
+      .catch(error => {
+        console.error("Error!", error.message);
+        showToast("Network error. Please try again.");
         submitBtn.disabled = false;
         submitBtn.textContent = originalText;
         isSubmitting = false;
-      }
-    })
-    .catch(error => {
-      console.error("Error!", error.message);
-      showToast("Network error. Please try again.");
-      submitBtn.disabled = false;
-      submitBtn.textContent = originalText;
-      isSubmitting = false;
-    });
-});
-
+      });
+  });
 
   // Spinner keyframes
   const style = document.createElement('style');
