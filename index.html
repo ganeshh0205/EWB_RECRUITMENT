@@ -381,46 +381,48 @@
 
 
   document.getElementById('application-form').addEventListener('submit', function(e) {
-    e.preventDefault();
+  e.preventDefault();
 
-    if (isSubmitting) return;
-    isSubmitting = true;
+  if (isSubmitting) return;
+  isSubmitting = true;
 
-    const submitBtn = this.querySelector('button[type="submit"]');
-    submitBtn.disabled = true;
-    const originalText = submitBtn.textContent;
-    submitBtn.innerHTML = '<span class="spinner" style="margin-right:8px; width:18px; height:18px; border:2px solid #fff; border-top:2px solid transparent; border-radius:50%; display:inline-block; animation:spin 1s linear infinite;"></span>Submitting...';
+  // Collect selected roles at the time of submission
+  const selectedRoles = Array.from(document.querySelectorAll('#role-checkboxes input:checked'))
+    .map(cb => cb.value)
+    .join(', ');
+  document.getElementById('role-input').value = selectedRoles;
 
-    const form = document.getElementById('application-form');
-    const formData = new FormData(form);
+  const submitBtn = this.querySelector('button[type="submit"]');
+  submitBtn.disabled = true;
+  const originalText = submitBtn.textContent;
+  submitBtn.innerHTML = '<span class="spinner" style="margin-right:8px; width:18px; height:18px; border:2px solid #fff; border-top:2px solid transparent; border-radius:50%; display:inline-block; animation:spin 1s linear infinite;"></span>Submitting...';
 
-    const branchRadio = form.querySelector('input[name="branch"]:checked');
-    if (branchRadio) {
-      formData.set('branch', branchRadio.value);
-    }
+  const form = document.getElementById('application-form');
+  const formData = new FormData(form);
 
-    fetch(scriptURL, { method: 'POST', body: formData })
-      .then(response => {
-        if (response.ok) {
-          document.getElementById('application-form').style.display = 'none';
-          document.getElementById('form-header').style.display = 'none';
-          document.getElementById('confirmation-page').style.display = 'flex';
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        } else {
-          showToast("Submission failed. Please try again.");
-          submitBtn.disabled = false;
-          submitBtn.textContent = originalText;
-          isSubmitting = false;
-        }
-      })
-      .catch(error => {
-        console.error("Error!", error.message);
-        showToast("Network error. Please try again.");
+  fetch(scriptURL, { method: 'POST', body: formData })
+    .then(response => {
+      if (response.ok) {
+        document.getElementById('application-form').style.display = 'none';
+        document.getElementById('form-header').style.display = 'none';
+        document.getElementById('confirmation-page').style.display = 'flex';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        showToast("Submission failed. Please try again.");
         submitBtn.disabled = false;
         submitBtn.textContent = originalText;
         isSubmitting = false;
-      });
-  });
+      }
+    })
+    .catch(error => {
+      console.error("Error!", error.message);
+      showToast("Network error. Please try again.");
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+      isSubmitting = false;
+    });
+});
+
 
   // Spinner keyframes
   const style = document.createElement('style');
