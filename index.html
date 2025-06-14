@@ -116,14 +116,14 @@
     color: #ff6f61;
   }
 
-  .checkboxes, .radio-group {
+  .radio-group {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
     margin-bottom: 20px;
   }
 
-  .checkboxes label, .radio-group label {
+  .radio-group label {
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -136,7 +136,7 @@
     border: 1px solid #4CAF50;
   }
 
-  .checkboxes input, .radio-group input {
+  .radio-group input {
     transform: scale(1.2);
     margin: 0;
     vertical-align: middle;
@@ -276,52 +276,88 @@
     <label class="required">WHY ARE YOU INTERESTED TO JOIN EWB?</label>
     <textarea name="interest" required></textarea>
 
-<style>
-  .checkbox-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    background: #E6F4EA;
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 600px;
-    margin: auto;
-    align-items: flex-start;
-    text-align: right;
+    <style>
+  .role-wrapper {
+    margin-bottom: 20px;
+    text-align: center;
   }
 
-.checkbox-container label {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 16px;
-  color: #1B1F1D;
-  background: white;
-  padding: 8px 12px;
-  border-radius: 6px;
-  border: 1px solid #4CAF50;
-  width: 100%;
-  justify-content: flex-start;
-}
+  .role-wrapper label.required {
+    display: block;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+
+  .role-toggle-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 25px;
+    justify-content: center;
+    padding: 15px;
+    background-color: #E6F4EA;
+    border-radius: 10px;
+    max-width: 700px;
+    margin: auto;
+  }
+
+  .role-toggle-btn {
+    padding: 10px 18px;
+    font-size: 14px;
+    border: 2px solid #4CAF50;
+    background-color: white;
+    color: #1B1F1D;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-align: center;
+  }
+
+  .role-toggle-btn:hover {
+    background-color: #dff7e2;
+  }
+
+  .role-toggle-btn.selected {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  }
 </style>
 
-
-<!-- Inside Section 2 -->
 <div class="role-wrapper">
-  <label class="required">ROLE YOU WANT TO OPT </label>
-  <div class="checkbox-container" id="role-checkboxes">
-    <label><input type="checkbox" value="Arts & Crafts"> Arts & Crafts</label>
-    <label><input type="checkbox" value="Content"> Content</label>
-    <label><input type="checkbox" value="Graphic Designing"> Graphic Designing</label>
-    <label><input type="checkbox" value="Ground Works"> Ground Works</label>
-    <label><input type="checkbox" value="Photography and Videography"> Photography and Videography</label>
-    <label><input type="checkbox" value="Projects"> Projects</label>
-    <label><input type="checkbox" value="Resource Planning"> Resource Planning</label>
-    <label><input type="checkbox" value="Social Media Handling"> Social Media Handling</label>
-    <label><input type="checkbox" value="Technical"> Technical</label>
+  <label class="required">ROLE YOU WANT TO OPT <span style="color:red">*</span></label>
+  <div class="role-toggle-container" id="role-toggle-container">
+    <button type="button" class="role-toggle-btn" data-value="Arts & Crafts">Arts & Crafts</button>
+    <button type="button" class="role-toggle-btn" data-value="Projects">Projects</button>
+    <button type="button" class="role-toggle-btn" data-value="Content">Content</button>
+    <button type="button" class="role-toggle-btn" data-value="Resource Planning">Resource Planning</button>
+    <button type="button" class="role-toggle-btn" data-value="Graphic Designing">Graphic Designing</button>
+    <button type="button" class="role-toggle-btn" data-value="Social Media Handling">Social Media Handling</button>
+    <button type="button" class="role-toggle-btn" data-value="Ground Works">Ground Works</button>
+    <button type="button" class="role-toggle-btn" data-value="Technical">Technical</button>
+    <button type="button" class="role-toggle-btn" data-value="Photography and Videography">Photography and Videography</button>
+    <button type="button" class="role-toggle-btn" data-value="Video Editing">Video Editing</button>
   </div>
   <input type="hidden" name="role" id="role-input" required>
 </div>
+
+<script>
+  const toggleContainer = document.getElementById('role-toggle-container');
+  const roleInput = document.getElementById('role-input');
+
+  toggleContainer.addEventListener('click', (e) => {
+    if (e.target.classList.contains('role-toggle-btn')) {
+      e.target.classList.toggle('selected');
+      const selected = Array.from(toggleContainer.querySelectorAll('.selected'))
+        .map(btn => btn.dataset.value)
+        .join(', ');
+      roleInput.value = selected;
+    }
+  });
+</script>
 
 
     <button type="button" class="btn" onclick="nextSection(2)">Next</button>
@@ -407,48 +443,45 @@
   }
 
   let isSubmitting = false;
+  
 
   document.getElementById('application-form').addEventListener('submit', function(e) {
-    e.preventDefault();
+  e.preventDefault();
 
-    if (isSubmitting) return;
-    isSubmitting = true;
+  if (isSubmitting) return;
+  isSubmitting = true;
 
-    const selectedRoles = Array.from(document.querySelectorAll('#role-checkboxes input:checked'))
-      .map(cb => cb.value)
-      .join(', ');
-    document.getElementById('role-input').value = selectedRoles;
+  const submitBtn = this.querySelector('button[type="submit"]');
+  submitBtn.disabled = true;
+  const originalText = submitBtn.textContent;
+  submitBtn.innerHTML = '<span class="spinner" style="margin-right:8px; width:18px; height:18px; border:2px solid #fff; border-top:2px solid transparent; border-radius:50%; display:inline-block; animation:spin 1s linear infinite;"></span>Submitting...';
 
-    const submitBtn = this.querySelector('button[type="submit"]');
-    submitBtn.disabled = true;
-    const originalText = submitBtn.textContent;
-    submitBtn.innerHTML = '<span class="spinner" style="margin-right:8px; width:18px; height:18px; border:2px solid #fff; border-top:2px solid transparent; border-radius:50%; display:inline-block; animation:spin 1s linear infinite;"></span>Submitting...';
+  const form = document.getElementById('application-form');
+  const formData = new FormData(form);
 
-    const form = document.getElementById('application-form');
-    const formData = new FormData(form);
-
-    fetch(scriptURL, { method: 'POST', body: formData })
-      .then(response => {
-        if (response.ok) {
-          document.getElementById('application-form').style.display = 'none';
-          document.getElementById('form-header').style.display = 'none';
-          document.getElementById('confirmation-page').style.display = 'flex';
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        } else {
-          showToast("Submission failed. Please try again.");
-          submitBtn.disabled = false;
-          submitBtn.textContent = originalText;
-          isSubmitting = false;
-        }
-      })
-      .catch(error => {
-        console.error("Error!", error.message);
-        showToast("Network error. Please try again.");
+  fetch(scriptURL, { method: 'POST', body: formData })
+    .then(response => {
+      if (response.ok) {
+        document.getElementById('application-form').style.display = 'none';
+        document.getElementById('form-header').style.display = 'none';
+        document.getElementById('confirmation-page').style.display = 'flex';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        showToast("Submission failed. Please try again.");
         submitBtn.disabled = false;
         submitBtn.textContent = originalText;
         isSubmitting = false;
-      });
-  });
+      }
+    })
+    .catch(error => {
+      console.error("Error!", error.message);
+      showToast("Network error. Please try again.");
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+      isSubmitting = false;
+    });
+});
+
 
   // Spinner keyframes
   const style = document.createElement('style');
