@@ -276,19 +276,19 @@
     <label class="required">WHY ARE YOU INTERESTED TO JOIN EWB?</label>
     <textarea name="interest" required></textarea>
 
-    <label class="required">ROLE YOU WANT TO OPT</label>
-    <select name="role" required>
-      <option value="">--Select--</option>
-      <option>Arts & Crafts</option>
-      <option>Content</option>
-      <option>Graphic Designing</option>
-      <option>Ground Works</option>
-      <option>Projects</option>
-      <option>Photography and Videography</option>
-      <option>Resource Planning</option>
-      <option>Technical</option>
-      <option>Social Media Handling</option>
-    </select>
+     <label class="required">ROLE YOU WANT TO OPT</label>
+      <div class="checkboxes" id="role-checkboxes">
+        <label><input type="checkbox" value="Arts & Crafts"> Arts & Crafts</label>
+        <label><input type="checkbox" value="Content"> Content</label>
+        <label><input type="checkbox" value="Graphic Designing"> Graphic Designing</label>
+        <label><input type="checkbox" value="Ground Works"> Ground Works</label>
+        <label><input type="checkbox" value="Projects"> Projects</label>
+        <label><input type="checkbox" value="Photography and Videography"> Photography and Videography</label>
+        <label><input type="checkbox" value="Resource Planning"> Resource Planning</label>
+        <label><input type="checkbox" value="Technical"> Technical</label>
+        <label><input type="checkbox" value="Social Media Handling"> Social Media Handling</label>
+      </div>
+    <input type="hidden" name="role" id="role-input" required>
 
     <button type="button" class="btn" onclick="nextSection(2)">Next</button>
   </div>
@@ -373,6 +373,12 @@
   }
 
   let isSubmitting = false;
+  // Collect selected checkboxes for roles
+  const selectedRoles = Array.from(document.querySelectorAll('#role-checkboxes input:checked'))
+    .map(cb => cb.value)
+    .join(', ');
+  document.getElementById('role-input').value = selectedRoles;
+
 
   document.getElementById('application-form').addEventListener('submit', function(e) {
     e.preventDefault();
