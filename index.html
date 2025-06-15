@@ -8,69 +8,69 @@
   <link rel="preload" as="image" href="ewb logo_white.png" />
   <style>
   * {
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
 
-  body {
-    background-color: #1B1F1D;
-    color: #E6F4EA;
-  }
+html, body {
+  height: 100%;
+  background-color: #1B1F1D;
+  color: #E6F4EA;
+}
 
-  header {
-    height: 90px;
-    background-color: #2A3C2E;
-    position: sticky;
-    top: 0;
-    z-index: 999;
-  }
+header {
+  height: 90px;
+  background-color: #2A3C2E;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
 
+.header-logos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding: 0 15px;
+}
+
+.header-logos .logo {
+  height: 80%;
+  width: auto;
+  max-width: 33%;
+  object-fit: contain;
+}
+
+.left-logo {
+  justify-self: start;
+}
+.center-logo {
+  justify-self: center;
+}
+.right-logo {
+  justify-self: end;
+}
+
+/* Responsive header logo sizing */
+@media (max-width: 600px) {
   .header-logos {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 100%;
-    padding: 0 15px;
+    padding: 0 10px;
   }
-
   .header-logos .logo {
-    height: 80%;
-    width: auto;
-    max-width: 33%;
-    object-fit: contain;
+    height: 70%;
+    max-width: 30%;
   }
-
-  .left-logo {
-    justify-self: start;
+}
+@media (max-width: 400px) {
+  .header-logos .logo {
+    height: 60%;
+    max-width: 28%;
   }
+}
 
-  .center-logo {
-    justify-self: center;
-  }
-
-  .right-logo {
-    justify-self: end;
-  }
-
-  @media (max-width: 600px) {
-    .header-logos {
-      padding: 0 10px;
-    }
-    .header-logos .logo {
-      height: 70%;
-      max-width: 30%;
-    }
-  }
-
-  @media (max-width: 400px) {
-    .header-logos .logo {
-      height: 60%;
-      max-width: 28%;
-    }
-  }
-
+/* Container with minimal padding */
 .container {
   min-height: 100vh;
   display: flex;
@@ -78,226 +78,237 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 60px 20px;
-  box-sizing: border-box;
+  padding: 20px 10px;
 }
 
-
-  .box {
-    background: #2A3C2E;
-    color: #cdeac0;
-    padding: 30px 40px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    max-width: 600px;
-    width: 100%;
-    text-align: center;
-  }
-
-  .btn {
-    padding: 12px 25px;
-    margin: 10px;
-    font-size: 16px;
-    border: none;
-    background-color: #43A047;
-    color: white;
-    cursor: pointer;
-    border-radius: 6px;
-    transition: background 0.3s ease;
-  }
-
-  .btn:hover {
-    background-color: #388E3C;
-  }
-
-  form {
-    max-width: 750px;
-    width: 100%;
-    background: #2A3C2E;
-    color: #cdeac0;
-    padding: 30px;
-    margin: 20px auto;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.3);
-  }
-
-  .form-section {
-    display: none;
-  }
-
-  .form-section.active {
-    display: block;
-    animation: fade 0.5s ease-in-out;
-  }
-
-  @keyframes fade {
-    from {opacity: 0;}
-    to {opacity: 1;}
-  }
-
-  label {
-    display: block;
-    margin: 10px 0 5px;
-    font-weight: bold;
-    color: #cdeac0;
-  }
-
-  input, select, textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    background-color: #E6F4EA;
-    color: #1B1F1D;
-    border: 1px solid #4CAF50;
-    border-radius: 4px;
-  }
-
-  .required::after {
-    content: " *";
-    color: #ff6f61;
-  }
-
-  .radio-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-bottom: 20px;
-  }
-
-  .radio-group label {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: #E6F4EA;
-    color: #1B1F1D;
-    padding: 6px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 15px;
-    border: 1px solid #4CAF50;
-  }
-
-  .radio-group input {
-    transform: scale(1.2);
-    margin: 0;
-    vertical-align: middle;
-  }
-
-  textarea {
-    resize: vertical;
-    height: 80px;
-  }
-
-  #confirmation-page h2 {
-    margin-bottom: 10px;
-    color: #cdeac0;
-  }
-
-  #confirmation-page p {
-    font-size: 1.1rem;
-    color: #cdeac0;
-  }
-  
-  
-
-  @media (max-width: 768px) {
-    .box {
-      padding: 20px;
-    }
-    form {
-      padding: 20px;
-    }
-  }
-
-  /* Spinner animation for button */
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-
-  .role-wrapper {
-    margin-bottom: 20px;
-    text-align: center;
-  }
-
-  .role-wrapper label.required {
-    display: block;
-    font-size: 1.1em;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #fff;
-  }
-
-  .role-toggle-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px 25px;
-    justify-content: center;
-    padding: 15px;
-    background-color: #E6F4EA;
-    border-radius: 10px;
-    max-width: 700px;
-    margin: auto;
-  }
-
-  .role-toggle-btn {
-    padding: 10px 18px;
-    font-size: 14px;
-    border: 2px solid #4CAF50;
-    background-color: white;
-    color: #1B1F1D;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: 100%;
-    text-align: center;
-  }
-
-  .role-toggle-btn:hover {
-    background-color: #dff7e2;
-  }
-
-  .role-toggle-btn.selected {
-    background-color: #4CAF50;
-    color: white;
-    font-weight: bold;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  html, body {
-  height: 100%;
-}
-#landing-page .box,
-#confirmation-page .box {
-  padding: 30px 30px;
-  max-width: 800px;
+/* Card-like box */
+.box {
+  background: #2A3C2E;
+  color: #cdeac0;
+  padding: 20px 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  max-width: 600px;
   width: 100%;
   text-align: center;
   margin: 0 auto;
 }
 
+/* Buttons */
+.btn {
+  padding: 10px 20px;
+  margin: 10px auto;
+  font-size: 15px;
+  border: none;
+  background-color: #43A047;
+  color: white;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+  display: inline-block;
+}
+
+.btn:hover {
+  background-color: #388E3C;
+}
+
+/* Form styling */
+form {
+  max-width: 750px;
+  width: 100%;
+  background: #2A3C2E;
+  color: #cdeac0;
+  padding: 25px 20px;
+  margin: 10px auto;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.25);
+}
+
+.form-section {
+  display: none;
+}
+.form-section.active {
+  display: block;
+  animation: fade 0.5s ease-in-out;
+}
+
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Labels & Inputs */
+label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+  color: #cdeac0;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 8px 10px;
+  margin-bottom: 16px;
+  background-color: #E6F4EA;
+  color: #1B1F1D;
+  border: 1px solid #4CAF50;
+  border-radius: 4px;
+}
+
+textarea {
+  resize: vertical;
+  height: 80px;
+}
+
+.required::after {
+  content: " *";
+  color: #ff6f61;
+}
+
+/* Radio button group */
+.radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.radio-group label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #E6F4EA;
+  color: #1B1F1D;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  border: 1px solid #4CAF50;
+}
+.radio-group input {
+  transform: scale(1.2);
+  margin: 0;
+  vertical-align: middle;
+}
+
+/* Role selection grid */
+.role-wrapper {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.role-wrapper label.required {
+  font-size: 1.05em;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.role-toggle-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 20px;
+  justify-content: center;
+  padding: 10px;
+  background-color: #E6F4EA;
+  border-radius: 10px;
+  max-width: 700px;
+  margin: auto;
+}
+
+.role-toggle-btn {
+  padding: 8px 14px;
+  font-size: 14px;
+  border: 2px solid #4CAF50;
+  background-color: white;
+  color: #1B1F1D;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  text-align: center;
+}
+.role-toggle-btn:hover {
+  background-color: #dff7e2;
+}
+.role-toggle-btn.selected {
+  background-color: #4CAF50;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Spinner animation */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Landing & Confirmation Pages */
+#landing-page .box,
+#confirmation-page .box {
+  padding: 20px 12px;
+  max-width: 800px;
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+}
+
 #landing-page .box img,
 #confirmation-page .box img {
-  max-width: 220px;
+  max-width: 200px;
   height: auto;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 #landing-page .box h1,
 #confirmation-page .box h2 {
-  font-size: 2rem;
-  margin-bottom: 16px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-size: 1.75rem;
+  margin-bottom: 12px;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+  word-wrap: break-word;
 }
 
 #landing-page .box p,
 #confirmation-page .box p {
-  font-size: 1.15rem;
-  line-height: 1.6;
-  margin-bottom: 24px;
-  padding: 0 10px;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  padding: 0 6px;
+  word-wrap: break-word;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .box {
+    padding: 16px;
+  }
+  form {
+    padding: 16px;
+  }
+
+  #landing-page .box h1,
+  #confirmation-page .box h2 {
+    font-size: 1.5rem;
+  }
+
+  #landing-page .box img,
+  #confirmation-page .box img {
+    max-width: 160px;
+    margin-bottom: 12px;
+  }
+
+  #landing-page .box p,
+  #confirmation-page .box p {
+    font-size: 0.95rem;
+  }
+
+  .btn {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
 }
 
 </style>
