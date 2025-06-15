@@ -29,17 +29,21 @@
   }
 
 .header-logos {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  position: relative;
+  padding: 10px 5vw;
+  gap: 10px;
+  background-color: #2A3C2E;
 }
 
 .header-logos .logo {
-  max-height: 60px;
+  height: auto;
+  width: 20vw;         /* Responsive width */
+  max-width: 100px;    /* Prevent logos from becoming too big */
+  min-width: 60px;     /* Prevent logos from becoming too small */
   object-fit: contain;
 }
-
 .left-logo {
   justify-self: start;
 }
@@ -181,6 +185,13 @@
     .box {
       padding: 20px;
     }
+  @media (max-width: 400px) {
+    .header-logos .logo {
+      width: 18vw;
+      max-width: 80px;
+    }
+  }
+
 
     form {
       padding: 20px;
