@@ -267,6 +267,35 @@
   html, body {
   height: 100%;
 }
+    /* Specific styling for landing and confirmation pages */
+#landing-page .box,
+#confirmation-page .box {
+  padding: 50px 50px;
+  max-width: 700px;
+}
+
+#landing-page .box img,
+#confirmation-page .box img {
+  margin-bottom: 25px;
+  max-width: 250px;
+}
+
+#landing-page .box h1,
+#confirmation-page .box h2 {
+  margin-bottom: 20px;
+  font-size: 1.8em;
+  white-space: nowrap; /* Prevent breaking into multiple lines */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#landing-page .box p,
+#confirmation-page .box p {
+  font-size: 1.1em;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
 
 </style>
 </head>
