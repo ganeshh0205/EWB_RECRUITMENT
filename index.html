@@ -19,23 +19,28 @@
     color: #E6F4EA;
   }
 
-  header {
-    padding: 20px;
-    text-align: center;
-    background-color: #2A3C2E;
-    position: sticky;
-    top: 0;
-    z-index: 999;
-  }
+ header {
+  height: 70px; /* or any fixed value */
+  background-color: #2A3C2E;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
 
 .header-logos {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 5vw;
-  gap: 10px;
-  background-color: #2A3C2E;
+  height: 100%;
+  padding: 0 20px;
 }
+
+.header-logos .logo {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
 
 .header-logos .logo {
   height: auto;
