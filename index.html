@@ -422,15 +422,16 @@
       }
     }
     section.classList.remove('active');
-    document.getElementById(`section-${current + 1}`).classList.add('active');
-    document.getElementById(`section-${current + 1}`).querySelector('input, select').focus();
+    const next = document.getElementById(`section-${current + 1}`);
+    next.classList.add('active');
+    next.querySelector('input, select').focus();
   }
 
   function previousSection(current) {
-    const section = document.getElementById(`section-${current}`);
-    section.classList.remove('active');
-    document.getElementById(`section-${current - 1}`).classList.add('active');
-    document.getElementById(`section-${current - 1}`).querySelector('input, select').focus();
+    document.getElementById(`section-${current}`).classList.remove('active');
+    const prev = document.getElementById(`section-${current - 1}`);
+    prev.classList.add('active');
+    prev.querySelector('input, select').focus();
   }
 
   const toggleContainer = document.getElementById('role-toggle-container');
@@ -439,26 +440,29 @@
   toggleContainer.addEventListener('click', (e) => {
     if (e.target.classList.contains('role-toggle-btn')) {
       e.target.classList.toggle('selected');
-      const selected = Array.from(toggleContainer.querySelectorAll('.selected'))
+      const selectedRoles = Array.from(toggleContainer.querySelectorAll('.selected'))
         .map(btn => btn.dataset.value)
         .join(', ');
-      roleInput.value = selected;
+      roleInput.value = selectedRoles;
     }
   });
 
+  // Toast setup
   const toast = document.createElement('div');
-  toast.style.position = 'fixed';
-  toast.style.bottom = '30px';
-  toast.style.left = '50%';
-  toast.style.transform = 'translateX(-50%)';
-  toast.style.backgroundColor = '#ff4d4d';
-  toast.style.color = '#fff';
-  toast.style.padding = '12px 20px';
-  toast.style.borderRadius = '6px';
-  toast.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
-  toast.style.zIndex = '9999';
-  toast.style.fontSize = '16px';
-  toast.style.display = 'none';
+  Object.assign(toast.style, {
+    position: 'fixed',
+    bottom: '30px',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    backgroundColor: '#ff4d4d',
+    color: '#fff',
+    padding: '12px 20px',
+    borderRadius: '6px',
+    boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+    zIndex: '9999',
+    fontSize: '16px',
+    display: 'none'
+  });
   document.body.appendChild(toast);
 
   function showToast(message) {
@@ -471,40 +475,59 @@
 
   let isSubmitting = false;
 
-  document.getElementById('application-form').addEventListener('submit', function(e) {
+  document.getElementById('application-form').addEventListener('submit', function (e) {
     e.preventDefault();
-
     if (isSubmitting) return;
     isSubmitting = true;
 
     const submitBtn = this.querySelector('button[type="submit"]');
-    submitBtn.disabled = true;
     const originalText = submitBtn.textContent;
-    submitBtn.innerHTML = '<span class="spinner" style="margin-right:8px; width:18px; height:18px; border:2px solid #fff; border-top:2px solid transparent; border-radius:50%; display:inline-block; animation:spin 1s linear infinite;"></span>Submitting...';
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = `
+      <span class="spinner" style="
+        margin-right:8px;
+        width:18px;
+        height:18px;
+        border:2px solid #fff;
+        border-top:2px solid transparent;
+        border-radius:50%;
+        display:inline-block;
+        animation:spin 1s linear infinite;"></span>Submitting...
+    `;
 
-    const form = document.getElementById('application-form');
-    const formData = new FormData(form);
+    const formData = new FormData(this);
 
     fetch(scriptURL, { method: 'POST', body: formData })
       .then(response => {
         if (response.ok) {
           document.getElementById('application-form').style.display = 'none';
           document.getElementById('form-header').style.display = 'none';
-          document.getElementById('confirmation-page').style.display = 'flex';
+
+          const confirmationPage = document.getElementById('confirmation-page');
+          confirmationPage.style.display = 'flex';
+          confirmationPage.style.flexDirection = 'column';
+          confirmationPage.style.alignItems = 'center';
+          confirmationPage.style.justifyContent = 'center';
+          confirmationPage.style.minHeight = '100vh';
+          confirmationPage.style.textAlign = 'center';
+
           window.scrollTo({ top: 0, behavior: 'smooth' });
         } else {
           showToast("Submission failed. Please try again.");
-          submitBtn.disabled = false;
-          submitBtn.textContent = originalText;
-          isSubmitting = false;
+          resetButton();
         }
       })
       .catch(error => {
         console.error("Error!", error.message);
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
-        isSubmitting = false;
+        showToast("Network error. Please check your connection.");
+        resetButton();
       });
+
+    function resetButton() {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+      isSubmitting = false;
+    }
   });
 </script>
 </body>
