@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,268 +8,315 @@
   <link rel="icon" type="image/png" href="ewb-logo-favicon.png" />
   <link rel="preload" as="image" href="ewb logo_white.png" />
   <style>
-  * {
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
+ * {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
 
-  html, body {
-    height: 100%;
-    background-color: #1B1F1D;
-    color: #E6F4EA;
-  }
+html, body {
+  height: 100%;
+  background-color: #1B1F1D;
+  color: #E6F4EA;
+}
 
-  header {
-    height: 90px;
-    background-color: #2A3C2E;
-    position: sticky;
-    top: 0;
-    z-index: 999;
-  }
+header {
+  height: 90px;
+  background-color: #2A3C2E;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
 
+.header-logos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding: 0 15px;
+}
+
+.header-logos .logo {
+  height: 80%;
+  width: auto;
+  max-width: 33%;
+  object-fit: contain;
+}
+
+.left-logo {
+  justify-self: start;
+}
+.center-logo {
+  justify-self: center;
+}
+.right-logo {
+  justify-self: end;
+}
+
+/* Responsive header logo sizing */
+@media (max-width: 600px) {
   .header-logos {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 100%;
-    padding: 0 15px;
+    padding: 0 10px;
   }
-
   .header-logos .logo {
-    height: 80%;
-    width: auto;
-    max-width: 33%;
-    object-fit: contain;
+    height: 70%;
+    max-width: 30%;
   }
-
-  @media (max-width: 600px) {
-    .header-logos { padding: 0 10px; }
-    .header-logos .logo { height: 70%; max-width: 30%; }
+}
+@media (max-width: 400px) {
+  .header-logos .logo {
+    height: 60%;
+    max-width: 28%;
   }
+}
 
-  @media (max-width: 400px) {
-    .header-logos .logo { height: 60%; max-width: 28%; }
+/* Container with minimal padding */
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px 10px;
+}
+
+/* Card-like box */
+.box {
+  background: #2A3C2E;
+  color: #cdeac0;
+  padding: 20px 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+/* Buttons */
+.btn {
+  padding: 10px 20px;
+  margin: 10px auto;
+  font-size: 15px;
+  border: none;
+  background-color: #43A047;
+  color: white;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+  display: inline-block;
+}
+
+.btn:hover {
+  background-color: #388E3C;
+}
+
+/* Form styling */
+form {
+  max-width: 750px;
+  width: 100%;
+  background: #2A3C2E;
+  color: #cdeac0;
+  padding: 25px 20px;
+  margin: 10px auto;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.25);
+}
+
+.form-section {
+  display: none;
+}
+.form-section.active {
+  display: block;
+  animation: fade 0.5s ease-in-out;
+}
+
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Labels & Inputs */
+label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+  color: #cdeac0;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 8px 10px;
+  margin-bottom: 16px;
+  background-color: #E6F4EA;
+  color: #1B1F1D;
+  border: 1px solid #4CAF50;
+  border-radius: 4px;
+}
+
+textarea {
+  resize: vertical;
+  height: 80px;
+}
+
+.required::after {
+  content: " *";
+  color: #ff6f61;
+}
+
+/* Radio button group */
+.radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.radio-group label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #E6F4EA;
+  color: #1B1F1D;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  border: 1px solid #4CAF50;
+}
+.radio-group input {
+  transform: scale(1.2);
+  margin: 0;
+  vertical-align: middle;
+}
+
+/* Role selection grid */
+.role-wrapper {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.role-wrapper label.required {
+  font-size: 1.05em;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.role-toggle-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 20px;
+  justify-content: center;
+  padding: 10px;
+  background-color: #E6F4EA;
+  border-radius: 10px;
+  max-width: 700px;
+  margin: auto;
+}
+
+.role-toggle-btn {
+  padding: 8px 14px;
+  font-size: 14px;
+  border: 2px solid #4CAF50;
+  background-color: white;
+  color: #1B1F1D;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  text-align: center;
+}
+.role-toggle-btn:hover {
+  background-color: #dff7e2;
+}
+.role-toggle-btn.selected {
+  background-color: #4CAF50;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Spinner animation */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Landing & Confirmation Pages */
+/* Landing & Confirmation Page Box */
+#landing-page .box,
+#confirmation-page .box {
+  padding: 20px 12px;
+  max-width: 800px;
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* Image – reduced size */
+#landing-page .box img,
+#confirmation-page .box img {
+  max-width: 140px; /* Reduced from 200+ */
+  height: auto;
+  margin-bottom: 12px;
+}
+
+/* Headings – increased font size */
+#landing-page .box h1,
+#confirmation-page .box h2 {
+  font-size: 2.2rem; /* Increased */
+  margin-bottom: 14px;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+  word-wrap: break-word;
+}
+
+/* Paragraph text */
+#landing-page .box p,
+#confirmation-page .box p {
+  font-size: 1.05rem;
+  line-height: 1.5;
+  margin-bottom: 18px;
+  padding: 0 6px;
+  word-wrap: break-word;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .box {
+    padding: 16px;
   }
-
-  .container {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 20px 10px;
-  }
-
-  .box, form, #landing-page .box, #confirmation-page .box {
-    background: #2A3C2E;
-    color: #cdeac0;
-    padding: 20px 15px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
-    max-width: 800px;
-    width: 100%;
-    text-align: center;
-    margin: 0 auto;
-  }
-
-  .btn {
-    padding: 10px 20px;
-    margin: 10px auto;
-    font-size: 15px;
-    border: none;
-    background-color: #43A047;
-    color: white;
-    cursor: pointer;
-    border-radius: 6px;
-    transition: background 0.3s ease;
-    display: inline-block;
-  }
-
-  .btn:hover {
-    background-color: #388E3C;
-  }
-
   form {
-    padding: 25px 20px;
-    margin: 10px auto;
-  }
-
-  .form-section { display: none; }
-  .form-section.active {
-    display: block;
-    animation: fade 0.5s ease-in-out;
-  }
-
-  @keyframes fade {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
-  label {
-    display: block;
-    margin: 10px 0 5px;
-    font-weight: bold;
-    color: #cdeac0;
-  }
-
-  .required::after {
-    content: " *";
-    color: #ff6f61;
-  }
-
-  input, select, textarea {
-    width: 100%;
-    padding: 8px 10px;
-    margin-bottom: 16px;
-    background-color: #E6F4EA;
-    color: #1B1F1D;
-    border: 1px solid #4CAF50;
-    border-radius: 4px;
-  }
-
-  textarea {
-    resize: vertical;
-    height: 80px;
-  }
-
-  .radio-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 20px;
-  }
-
-  .radio-group label {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: #E6F4EA;
-    color: #1B1F1D;
-    padding: 6px 12px;
-    border-radius: 6px;
-    font-size: 14px;
-    cursor: pointer;
-    border: 1px solid #4CAF50;
-  }
-
-  .radio-group input {
-    transform: scale(1.2);
-    margin: 0;
-  }
-
-  .role-wrapper {
-    margin-bottom: 20px;
-    text-align: center;
-  }
-
-  .role-wrapper label.required {
-    font-size: 1.05em;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #fff;
-  }
-
-  .role-toggle-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px 20px;
-    padding: 10px;
-    background-color: #E6F4EA;
-    border-radius: 10px;
-    max-width: 700px;
-    margin: auto;
-  }
-
-  .role-toggle-btn {
-    padding: 8px 14px;
-    font-size: 14px;
-    border: 2px solid #4CAF50;
-    background-color: white;
-    color: #1B1F1D;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: 100%;
-    text-align: center;
-  }
-
-  .role-toggle-btn:hover {
-    background-color: #dff7e2;
-  }
-
-  .role-toggle-btn.selected {
-    background-color: #4CAF50;
-    color: white;
-    font-weight: bold;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-  }
-
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-
-  #landing-page .box img,
-  #confirmation-page .box img {
-    max-width: 140px;
-    height: auto;
-    margin-bottom: 14px;
+    padding: 16px;
   }
 
   #landing-page .box h1,
   #confirmation-page .box h2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
+  }
+
+  #landing-page .box img,
+  #confirmation-page .box img {
+    max-width: 160px;
     margin-bottom: 12px;
-    white-space: normal;
-    word-wrap: break-word;
   }
 
   #landing-page .box p,
   #confirmation-page .box p {
-    font-size: 1.05rem;
-    line-height: 1.5;
-    margin-bottom: 18px;
-    padding: 0 6px;
-    word-wrap: break-word;
+    font-size: 0.95rem;
   }
 
-  @media (max-width: 768px) {
-    .box, form { padding: 16px; }
-
-    #landing-page .box h1,
-    #confirmation-page .box h2 {
-      font-size: 1.65rem;
-    }
-
-    #landing-page .box img,
-    #confirmation-page .box img {
-      max-width: 100px;
-    }
-
-    #landing-page .box p,
-    #confirmation-page .box p {
-      font-size: 0.95rem;
-    }
-
-    .btn {
-      font-size: 14px;
-      padding: 8px 16px;
-    }
+  .btn {
+    font-size: 14px;
+    padding: 8px 16px;
   }
-    form {
-  text-align: left; /* Align text content to the left */
-  align-items: flex-start; /* Optional: aligns children to the left in flex context */
-}
-
-label, input, select, textarea {
-  text-align: left; /* Ensures the text inside inputs is also left-aligned */
 }
 
 </style>
-
 </head>
 <body>
 <!-- Landing Page -->
@@ -402,8 +450,7 @@ label, input, select, textarea {
 </div>
 
 <script>
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbyxuA0xxiakQZUyYtVG4oWp8Bu1c2xATgTB0kwNrAQfpZaZIPI2RY_HcjJPiisswLntXw/exec';
-
+  const scriptURL ='https://script.google.com/macros/s/AKfycbyxuA0xxiakQZUyYtVG4oWp8Bu1c2xATgTB0kwNrAQfpZaZIPI2RY_HcjJPiisswLntXw/exec';
   function startApplication() {
     document.getElementById('landing-page').style.display = 'none';
     document.getElementById('form-header').style.display = 'block';
