@@ -28,10 +28,32 @@
     z-index: 999;
   }
 
-  .logo {
-    height: 60px;
-    margin-bottom: 10px;
-  }
+  .header-logos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-logos .logo {
+  height: 60px;
+  max-height: 80px;
+  object-fit: contain;
+}
+
+.center-logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.left-logo {
+  justify-self: flex-start;
+}
+
+.right-logo {
+  justify-self: flex-end;
+}
+
 
   .container {
     padding: 60px 20px;
@@ -244,7 +266,12 @@
 
 <!-- Sticky Header -->
 <header style="display:none" id="form-header">
-  <img src="ewb logo_white.png" alt="EWB-IUCEE MLRIT Logo" class="logo" style="height: 100px"/>
+  <div class="header-logos">
+    <img src="ewb logo_white.png" alt="EWB Logo" class="logo left-logo" />
+    <img src="iucee- white.png" alt="IUCEE Logo" class="logo center-logo" />
+    <img src="IEEE logo.png" alt="IEEE Logo" class="logo right-logo" />
+</div>
+
 </header>
 
 <!-- Multi-section Form -->
@@ -377,7 +404,7 @@
 </div>
 
 <script>
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbyxuA0xxiakQZUyYtVG4oWp8Bu1c2xATgTB0kwNrAQfpZaZIPI2RY_HcjJPiisswLntXw/exec';
+  const scriptURL = '';
 
   function startApplication() {
     document.getElementById('landing-page').style.display = 'none';
