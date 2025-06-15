@@ -55,7 +55,7 @@
 
   .btn {
     padding: 12px 25px;
-    margin-top: 20px;
+    margin: 10px;
     font-size: 16px;
     border: none;
     background-color: #43A047;
@@ -176,14 +176,63 @@
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
   }
-  </style>
+
+  .role-wrapper {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .role-wrapper label.required {
+    display: block;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+
+  .role-toggle-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 25px;
+    justify-content: center;
+    padding: 15px;
+    background-color: #E6F4EA;
+    border-radius: 10px;
+    max-width: 700px;
+    margin: auto;
+  }
+
+  .role-toggle-btn {
+    padding: 10px 18px;
+    font-size: 14px;
+    border: 2px solid #4CAF50;
+    background-color: white;
+    color: #1B1F1D;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-align: center;
+  }
+
+  .role-toggle-btn:hover {
+    background-color: #dff7e2;
+  }
+
+  .role-toggle-btn.selected {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  }
+</style>
 </head>
 <body>
 
 <!-- Landing Page -->
 <div class="container" id="landing-page">
   <div class="box">
-    <img src="ewb logo_white.png" alt="EWB Logo" class="logo" style="max-width: 100%; height: auto;"/>
+    <img src="ewb logo_white.png" alt="EWB-IUCEE MLRIT Logo" class="logo" style="max-width: 100%; height: auto;"/>
     <h1>Welcome to EWB-IUCEE MLRIT</h1>
     <p>
       Engineers Without Borders (EWB) is a student-driven chapter that fosters innovation, teamwork, and leadership to solve real-world problems and serve communities. Join us in engineering change!
@@ -194,7 +243,7 @@
 
 <!-- Sticky Header -->
 <header style="display:none" id="form-header">
-  <img src="ewb logo_white.png" alt="EWB Logo" class="logo" style="height: 100px"/>
+  <img src="ewb logo_white.png" alt="EWB-IUCEE MLRIT Logo" class="logo" style="height: 100px"/>
 </header>
 
 <!-- Multi-section Form -->
@@ -255,8 +304,6 @@
     <label class="required">BACKLOGS</label>
     <input type="text" name="backlogs" required>
 
-
-
     <button type="button" class="btn" onclick="nextSection(1)">Next</button>
   </div>
 
@@ -276,89 +323,22 @@
     <label class="required">WHY ARE YOU INTERESTED TO JOIN EWB?</label>
     <textarea name="interest" required></textarea>
 
-    <style>
-  .role-wrapper {
-    margin-bottom: 20px;
-    text-align: center;
-  }
+    <label class="required">ROLE YOU WANT TO OPT</label>
+    <div class="role-toggle-container" id="role-toggle-container">
+      <button type="button" class="role-toggle-btn" data-value="Arts & Crafts">Arts & Crafts</button>
+      <button type="button" class="role-toggle-btn" data-value="Projects">Projects</button>
+      <button type="button" class="role-toggle-btn" data-value="Content">Content</button>
+      <button type="button" class="role-toggle-btn" data-value="Resource Planning">Resource Planning</button>
+      <button type="button" class="role-toggle-btn" data-value="Graphic Designing">Graphic Designing</button>
+      <button type="button" class="role-toggle-btn" data-value="Social Media Handling">Social Media Handling</button>
+      <button type="button" class="role-toggle-btn" data-value="Ground Works">Ground Works</button>
+      <button type="button" class="role-toggle-btn" data-value="Technical">Technical</button>
+      <button type="button" class="role-toggle-btn" data-value="Photography and Videography">Photography and Videography</button>
+      <button type="button" class="role-toggle-btn" data-value="Video Editing">Video Editing</button>
+    </div>
+    <input type="hidden" name="role" id="role-input" required>
 
-  .role-wrapper label.required {
-    display: block;
-    font-size: 1.1em;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #fff;
-  }
-
-  .role-toggle-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px 25px;
-    justify-content: center;
-    padding: 15px;
-    background-color: #E6F4EA;
-    border-radius: 10px;
-    max-width: 700px;
-    margin: auto;
-  }
-
-  .role-toggle-btn {
-    padding: 10px 18px;
-    font-size: 14px;
-    border: 2px solid #4CAF50;
-    background-color: white;
-    color: #1B1F1D;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: 100%;
-    text-align: center;
-  }
-
-  .role-toggle-btn:hover {
-    background-color: #dff7e2;
-  }
-
-  .role-toggle-btn.selected {
-    background-color: #4CAF50;
-    color: white;
-    font-weight: bold;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-  }
-</style>
-
-  <label class="required">ROLE YOU WANT TO OPT <span style="color:red">*</span></label>
-  <div class="role-toggle-container" id="role-toggle-container">
-    <button type="button" class="role-toggle-btn" data-value="Arts & Crafts">Arts & Crafts</button>
-    <button type="button" class="role-toggle-btn" data-value="Projects">Projects</button>
-    <button type="button" class="role-toggle-btn" data-value="Content">Content</button>
-    <button type="button" class="role-toggle-btn" data-value="Resource Planning">Resource Planning</button>
-    <button type="button" class="role-toggle-btn" data-value="Graphic Designing">Graphic Designing</button>
-    <button type="button" class="role-toggle-btn" data-value="Social Media Handling">Social Media Handling</button>
-    <button type="button" class="role-toggle-btn" data-value="Ground Works">Ground Works</button>
-    <button type="button" class="role-toggle-btn" data-value="Technical">Technical</button>
-    <button type="button" class="role-toggle-btn" data-value="Photography and Videography">Photography and Videography</button>
-    <button type="button" class="role-toggle-btn" data-value="Video Editing">Video Editing</button>
-  </div>
-  <input type="hidden" name="role" id="role-input" required>
-</div>
-
-<script>
-  const toggleContainer = document.getElementById('role-toggle-container');
-  const roleInput = document.getElementById('role-input');
-
-  toggleContainer.addEventListener('click', (e) => {
-    if (e.target.classList.contains('role-toggle-btn')) {
-      e.target.classList.toggle('selected');
-      const selected = Array.from(toggleContainer.querySelectorAll('.selected'))
-        .map(btn => btn.dataset.value)
-        .join(', ');
-      roleInput.value = selected;
-    }
-  });
-</script>
-
-
+    <button type="button" class="btn" onclick="previousSection(2)">Back</button>
     <button type="button" class="btn" onclick="nextSection(2)">Next</button>
   </div>
 
@@ -381,6 +361,7 @@
     <label>Have you participated in any of the EWB events, competitions, or projects?</label>
     <textarea name="activities"></textarea>
     
+    <button type="button" class="btn" onclick="previousSection(3)">Back</button>
     <button type="submit" class="btn">Submit</button>
   </div>
 </form>
@@ -388,7 +369,7 @@
 <!-- Confirmation -->
 <div class="container" id="confirmation-page" style="display: none;">
   <div class="box">
-    <img src="ewb logo_white.png" alt="EWB Logo" class="logo" />
+    <img src="ewb logo_white.png" alt="EWB-IUCEE MLRIT Logo" class="logo" />
     <h2>Thank you for applying to EWB-IUCEE MLRIT!</h2>
     <p>Your application has been received successfully. We’ll contact you shortly with further updates. Stay tuned and welcome aboard!</p>
   </div>
@@ -402,6 +383,7 @@
     document.getElementById('form-header').style.display = 'block';
     document.getElementById('application-form').style.display = 'block';
     document.getElementById('section-1').classList.add('active');
+    document.getElementById('section-1').querySelector('input').focus();
   }
 
   function nextSection(current) {
@@ -415,7 +397,28 @@
     }
     section.classList.remove('active');
     document.getElementById(`section-${current + 1}`).classList.add('active');
+    document.getElementById(`section-${current + 1}`).querySelector('input, select').focus();
   }
+
+  function previousSection(current) {
+    const section = document.getElementById(`section-${current}`);
+    section.classList.remove('active');
+    document.getElementById(`section-${current - 1}`).classList.add('active');
+    document.getElementById(`section-${current - 1}`).querySelector('input, select').focus();
+  }
+
+  const toggleContainer = document.getElementById('role-toggle-container');
+  const roleInput = document.getElementById('role-input');
+
+  toggleContainer.addEventListener('click', (e) => {
+    if (e.target.classList.contains('role-toggle-btn')) {
+      e.target.classList.toggle('selected');
+      const selected = Array.from(toggleContainer.querySelectorAll('.selected'))
+        .map(btn => btn.dataset.value)
+        .join(', ');
+      roleInput.value = selected;
+    }
+  });
 
   // Create toast element
   const toast = document.createElement('div');
@@ -442,55 +445,42 @@
   }
 
   let isSubmitting = false;
-  
 
   document.getElementById('application-form').addEventListener('submit', function(e) {
-  e.preventDefault();
+    e.preventDefault();
 
-  if (isSubmitting) return;
-  isSubmitting = true;
+    if (isSubmitting) return;
+    isSubmitting = true;
 
-  const submitBtn = this.querySelector('button[type="submit"]');
-  submitBtn.disabled = true;
-  const originalText = submitBtn.textContent;
-  submitBtn.innerHTML = '<span class="spinner" style="margin-right:8px; width:18px; height:18px; border:2px solid #fff; border-top:2px solid transparent; border-radius:50%; display:inline-block; animation:spin 1s linear infinite;"></span>Submitting...';
+    const submitBtn = this.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    const originalText = submitBtn.textContent;
+    submitBtn.innerHTML = '<span class="spinner" style="margin-right:8px; width:18px; height:18px; border:2px solid #fff; border-top:2px solid transparent; border-radius:50%; display:inline-block; animation:spin 1s linear infinite;"></span>Submitting...';
 
-  const form = document.getElementById('application-form');
-  const formData = new FormData(form);
+    const form = document.getElementById('application-form');
+    const formData = new FormData(form);
 
-  fetch(scriptURL, { method: 'POST', body: formData })
-    .then(response => {
-      if (response.ok) {
-        document.getElementById('application-form').style.display = 'none';
-        document.getElementById('form-header').style.display = 'none';
-        document.getElementById('confirmation-page').style.display = 'flex';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else {
-        showToast("Submission failed. Please try again.");
+    fetch(scriptURL, { method: 'POST', body: formData })
+      .then(response => {
+        if (response.ok) {
+          document.getElementById('application-form').style.display = 'none';
+          document.getElementById('form-header').style.display = 'none';
+          document.getElementById('confirmation-page').style.display = 'flex';
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          showToast("Submission failed. Please try again.");
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+          isSubmitting = false;
+        }
+      })
+      .catch(error => {
+        console.error("Error!", error.message);
         submitBtn.disabled = false;
         submitBtn.textContent = originalText;
         isSubmitting = false;
-      }
-    })
-    .catch(error => {
-      console.error("Error!", error.message);
-      showToast("Network error. Please try again.");
-      submitBtn.disabled = false;
-      submitBtn.textContent = originalText;
-      isSubmitting = false;
-    });
-});
-
-
-  // Spinner keyframes
-  const style = document.createElement('style');
-  style.innerHTML = `
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-  `;
-  document.head.appendChild(style);
+      });
+  });
 </script>
 </body>
 </html>
