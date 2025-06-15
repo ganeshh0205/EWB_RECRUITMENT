@@ -28,12 +28,11 @@
     z-index: 999;
   }
 
-  .header-logos {
-  display: flex;
-  justify-content: space-between;
+.header-logos {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
   position: relative;
-  padding: 0 20px;
 }
 
 .header-logos .logo {
@@ -41,20 +40,17 @@
   object-fit: contain;
 }
 
-.center-logo {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+.left-logo {
+  justify-self: start;
 }
 
-.left-logo {
-  justify-self: flex-start;
+.center-logo {
+  justify-self: center;
 }
 
 .right-logo {
-  justify-self: flex-end;
+  justify-self: end;
 }
-
 
   .container {
     padding: 60px 20px;
